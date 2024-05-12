@@ -6,7 +6,7 @@ public class Map : MonoBehaviour
 {
     public GameObject map;
     float currentScale, maxScale, minScale;
-    RectTransform imageToZoom;
+    public RectTransform imageToZoom;
     void Update()
     {
         Zoom(Input.GetAxis("Mouse ScrollWheel"));
