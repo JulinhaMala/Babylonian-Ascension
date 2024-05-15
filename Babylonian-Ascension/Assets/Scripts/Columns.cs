@@ -9,6 +9,23 @@ public class Columns : MonoBehaviour
     [SerializeField] public Image ColuEco, ColuMil, ColuSoci, ColuDese;
     [SerializeField] public TMP_Text Eco_Text, Mil_Text, Soci_Text, Dese_Text;
 
+    private void FixedUpdate()
+    {
+        AllSet();
+    }
+
+    public void AllSet()
+    {
+        EcoSet();
+        MilSet();
+        SociSet();
+        DeseSet();
+        EcoText();
+        MilText();
+        SociText();
+        DeseText();
+    }
+
     public void EcoSet()
     {
         ColuEco.fillAmount = Stats.instance.Econo / Stats.instance.MaxEcono;
@@ -42,17 +59,7 @@ public class Columns : MonoBehaviour
         }
     }
 
-    public void AllSet()
-    {
-        EcoSet();
-        MilSet();
-        SociSet();
-        DeseSet();
-        EcoText();
-        MilText();
-        SociText();
-        DeseText();
-    }
+    
     public void EcoText()
     {
         Eco_Text.text = $" {Stats.instance.Econo} / {Stats.instance.MaxEcono}";
@@ -69,8 +76,5 @@ public class Columns : MonoBehaviour
     {
         Dese_Text.text = $"{Stats.instance.Desenvol} / {Stats.instance.MaxDesenvol}";
     }
-    private void FixedUpdate()
-    {
-        AllSet();
-    }
+    
 }
