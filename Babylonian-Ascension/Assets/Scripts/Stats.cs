@@ -13,7 +13,7 @@ public class Stats : MonoBehaviour
     public float EconoX, MilitaX, SocialX, DesenvolX;
 
     float time;
-    int timer = 1;
+    int timer = 20;
 
     public void Start()
     {
@@ -49,7 +49,7 @@ public class Stats : MonoBehaviour
             Milita += MilitaX;
             Social += SocialX;
             Desenvol += DesenvolX;
-            time = 0;
+            Time.timeScale = 0;
         }
         if (Econo <= 0 || Milita <= 0 || Social <= 0 || Desenvol <= 0)
         {
