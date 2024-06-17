@@ -479,6 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 116424176}
   - component: {fileID: 116424175}
+  - component: {fileID: 116424177}
   m_Layer: 0
   m_Name: GamePlay
   m_TagString: Untagged
@@ -526,6 +527,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &116424177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116424174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960b2fcee9245bd4ba3b2f9c236bace6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  first: {fileID: 0}
+  second: {fileID: 0}
+  third: {fileID: 0}
+  RandomButton:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &193025365
 GameObject:
   m_ObjectHideFlags: 0
