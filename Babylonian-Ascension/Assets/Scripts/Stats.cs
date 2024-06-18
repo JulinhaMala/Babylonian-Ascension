@@ -13,7 +13,7 @@ public class Stats : MonoBehaviour
     public float EconoX, MilitaX, SocialX, DesenvolX;
 
     float time;
-    int timer = 1;
+    int timer = 20;
 
     public void Start()
     {
