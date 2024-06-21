@@ -3,55 +3,118 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
+
+public enum Add
+{
+    eco, mil, soc, des
+}
+public enum Subtract
+{
+    eco, mil, soc, des
+}
 
 public class Buttons_Stats : MonoBehaviour
 {
     [SerializeField] public TMP_Text Eco_Text, Mil_Text, Soci_Text, Dese_Text;
     [SerializeField] float Multi_Eco, Multi_Mil, Multi_Soci, Multi_Dese;
     [SerializeField] float IncreaseEco, IncreaseMil, IncreaseSoci, IncreaseDese;
+    Add addStat;
+    Subtract subStat;
 
     void Start()
     {
-        IncreaseEco = 2;
-        IncreaseMil = 2;
-        IncreaseSoci = 2;
-        IncreaseDese = 2;
-        Eco_Text.text = $"Actual Increment: {Stats.instance.EconoX}" + $"Poss Increment: {Stats.instance.EconoX *= Multi_Eco}";
-        Mil_Text.text = $"Actual Increment: {Stats.instance.MilitaX}" + $"Poss Increment: {Stats.instance.MilitaX *= Multi_Mil}";
-        Soci_Text.text = $"Actual Increment: {Stats.instance.SocialX}" + $"Poss Increment: {Stats.instance.SocialX *= Multi_Soci}";
-        Dese_Text.text = $"Actual Increment: {Stats.instance.DesenvolX}" + $"Poss Increment: {Stats.instance.DesenvolX *= Multi_Dese}";
+        IncreaseEco = 5;
+        IncreaseMil = 5;
+        IncreaseSoci = 5;
+        IncreaseDese = 5;
+        Eco_Text.text = $"";
+        Mil_Text.text = $"";
+        Soci_Text.text = $"";
+        Dese_Text.text = $"";
     }
 
-    public void Eco()
+    public void SelectFont(int index)
     {
-        Stats.instance.Econo -= IncreaseEco;
-        IncreaseEco += 2;
-        Stats.instance.EconoX += Multi_Eco;
-        Eco_Text.text = $"Actual Increment: {Stats.instance.EconoX}" + $"Poss Increment: {Stats.instance.EconoX *= Multi_Eco}";
+        switch (index)
+        {
+            case 0:
+                addStat = Add.eco;
+                break;
+
+            case 1:
+                addStat = Add.mil;
+                break;
+
+            case 2:
+                addStat = Add.soc;
+                break;
+
+            case 3:
+                addStat = Add.des;
+                break;
+        }
     }
 
-    public void Mil()
+    public void SelectAdditional(int index)
     {
-        Stats.instance.Milita -= IncreaseMil;
-        IncreaseMil += 2;
-        Stats.instance.MilitaX += Multi_Mil;
-        Mil_Text.text = $"Actual Increment: {Stats.instance.MilitaX}" + $"Poss Increment: {Stats.instance.MilitaX *= Multi_Mil}";
+        switch (index)
+        {
+            case 0:
+                subStat = Subtract.eco;
+                break;
+
+            case 1:
+                subStat = Subtract.mil;
+                break;
+
+            case 2:
+                subStat = Subtract.soc;
+                break;
+
+            case 3:
+                subStat = Subtract.des;
+                break;
+        }
     }
 
-    public void Soci()
+    public void Math()
     {
-        Stats.instance.Social -= IncreaseSoci;
-        IncreaseSoci += 2;
-        Stats.instance.SocialX += Multi_Soci;
-        Soci_Text.text = $"Actual Increment: {Stats.instance.SocialX}" + $"Poss Increment: {Stats.instance.SocialX *= Multi_Soci}";
-    }
+        switch (addStat)
+        {
+            case Add.eco:
 
-    public void Dese()
-    {
-        Stats.instance.Desenvol -= IncreaseDese;
-        IncreaseDese += 2;
-        Stats.instance.DesenvolX += Multi_Dese;
-        Dese_Text.text = $"Actual Increment: {Stats.instance.DesenvolX}" + $"Poss Increment: {Stats.instance.DesenvolX *= Multi_Dese}";
-    }
+                break;
 
+            case Add.mil:
+
+                break;
+
+            case Add.soc:
+
+                break;
+
+            case Add.des:
+
+                break;
+        }
+        switch (subStat)
+        {
+            case Subtract.eco:
+
+                break;
+
+            case Subtract.mil:
+
+                break;
+
+            case Subtract.soc:
+
+                break;
+
+            case Subtract.des:
+
+                break;
+        }
+    }
 }
