@@ -21,11 +21,9 @@ public class Days : MonoBehaviour
         currentDay++;
         days_Txt.text = $"Você está no dia {currentDay}";
         passDayAnim.SetActive(true);
-        StartCoroutine(DeactiveAnim());
     }
-    IEnumerator DeactiveAnim()
+    public void DeactivateAnim()
     {
-        yield return new WaitForSeconds (6);
         passDayAnim.SetActive(false);
     }
 }

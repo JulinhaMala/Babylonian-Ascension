@@ -13,6 +13,7 @@ public class Stats : MonoBehaviour
     public float econoX, militaX, socialX, desenvolX;
 
     [SerializeField] int timeToPassDay = 20;
+    float actualTime;
 
     public void Start()
     {
@@ -20,7 +21,6 @@ public class Stats : MonoBehaviour
         Max();
         Inicio();
         Increase();
-        
     }
 
     #region StartStatistics
@@ -36,17 +36,29 @@ public class Stats : MonoBehaviour
 
     public void Increase()
     {
-        econoX = 1; militaX = 1; socialX = 1; desenvolX = 1;
+        econoX = 3; militaX = 3; socialX = 3; desenvolX = 3;
     }
     #endregion
 
     private void FixedUpdate()
     {
+        actualTime += Time.deltaTime;
+        if (actualTime >= timeToPassDay) 
+        {
+            print("StatsUP");
+            econo += econoX;
+            milita += militaX;
+            social += socialX;
+            desenvol += desenvolX;
+            Days.instance.PassDay();
+            actualTime = 0;
+        }
         if (econo <= 0 || milita <= 0 || social <= 0 || desenvol <= 0)
         {
             fim.SetActive(true);
             Time.timeScale = 0;
         }
+        #region Max
         if (econo >= maxEcono)
         {
             econo = maxEcono;
@@ -63,15 +75,6 @@ public class Stats : MonoBehaviour
         {
             desenvol = maxDesenvol;
         }
-        StartCoroutine(Timer());
-    }
-    IEnumerator Timer()
-    {
-        yield return new WaitForSeconds(timeToPassDay);
-        econo += econoX;
-        milita += militaX;
-        social += socialX;
-        desenvol += desenvolX;
-        Days.instance.PassDay();
+        #endregion
     }
 }
