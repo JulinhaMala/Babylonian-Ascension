@@ -898,7 +898,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116424176}
-  - component: {fileID: 116424175}
   m_Layer: 0
   m_Name: GamePlay
   m_TagString: Untagged
@@ -906,32 +905,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &116424175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116424174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0da0b284c4f97984f87d1a17cc23304a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fim: {fileID: 1670120065}
-  econo: 0
-  milita: 0
-  social: 0
-  desenvol: 0
-  maxEcono: 0
-  maxMilita: 0
-  maxSocial: 0
-  maxDesenvol: 0
-  econoX: 0
-  militaX: 0
-  socialX: 0
-  desenvolX: 0
-  timeToPassDay: 5
 --- !u!4 &116424176
 Transform:
   m_ObjectHideFlags: 0
@@ -943,7 +916,9 @@ Transform:
   m_LocalPosition: {x: -0.5159559, y: 0.4339371, z: 54.15712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1522269553}
+  - {fileID: 1461194205}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6228,6 +6203,94 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417734367}
   m_CullTransparentMesh: 1
+--- !u!1 &1461194204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461194205}
+  - component: {fileID: 1461194207}
+  - component: {fileID: 1461194206}
+  m_Layer: 0
+  m_Name: Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1461194205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461194204}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 116424176}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461194206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461194204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679b309cf9af51e44b337e63064ff567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Invasao:
+    m_PersistentCalls:
+      m_Calls: []
+  Vitoria:
+    m_PersistentCalls:
+      m_Calls: []
+  Derrota:
+    m_PersistentCalls:
+      m_Calls: []
+  Escassez:
+    m_PersistentCalls:
+      m_Calls: []
+  Aceitacao:
+    m_PersistentCalls:
+      m_Calls: []
+  Revolta:
+    m_PersistentCalls:
+      m_Calls: []
+  Doenca:
+    m_PersistentCalls:
+      m_Calls: []
+  Cura:
+    m_PersistentCalls:
+      m_Calls: []
+  Epidemia:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1461194207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461194204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13dea2c9728f25a40a59504cfa4f1889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explain_Text: {fileID: 0}
+  option1: {fileID: 0}
+  option2: {fileID: 0}
+  option3: {fileID: 0}
 --- !u!1 &1503276769
 GameObject:
   m_ObjectHideFlags: 0
@@ -6443,6 +6506,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515680279}
   m_CullTransparentMesh: 1
+--- !u!1 &1522269552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1522269553}
+  - component: {fileID: 1522269554}
+  m_Layer: 0
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1522269553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522269552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 116424176}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1522269554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522269552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da0b284c4f97984f87d1a17cc23304a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fim: {fileID: 1670120065}
+  econo: 0
+  milita: 0
+  social: 0
+  desenvol: 0
+  maxEcono: 0
+  maxMilita: 0
+  maxSocial: 0
+  maxDesenvol: 0
+  econoX: 0
+  militaX: 0
+  socialX: 0
+  desenvolX: 0
+  timeToPassDay: 10
 --- !u!1 &1534098368
 GameObject:
   m_ObjectHideFlags: 0
