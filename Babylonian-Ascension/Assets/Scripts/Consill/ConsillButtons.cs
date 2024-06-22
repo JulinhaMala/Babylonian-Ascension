@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -65,76 +63,76 @@ public class ConsillButtons : MonoBehaviour
         {
             #region Economia
             case 1:
-                Stats.instance.EconoX += 0.2f;
+                Stats.instance.econoX += 0.2f;
 
-                Stats.instance.MilitaX -= 0.2f;
+                Stats.instance.militaX -= 0.2f;
 
                 break;
             case 2:
-                Stats.instance.EconoX += 0.2f;
+                Stats.instance.econoX += 0.2f;
 
-                Stats.instance.SocialX -= 0.2f;
+                Stats.instance.socialX -= 0.2f;
 
                 break;
             case 3:
-                Stats.instance.EconoX += 0.2f;
+                Stats.instance.econoX += 0.2f;
 
-                Stats.instance.DesenvolX -= 0.2f;
+                Stats.instance.desenvolX -= 0.2f;
 
                 break;
             #endregion
             #region Militar
             case 4:
-                Stats.instance.MilitaX += 0.2f;
+                Stats.instance.militaX += 0.2f;
 
-                Stats.instance.EconoX -= 0.2f;
+                Stats.instance.econoX -= 0.2f;
 
                 break;
             case 5:
-                Stats.instance.MilitaX += 0.2f;
+                Stats.instance.militaX += 0.2f;
 
-                Stats.instance.SocialX -= 0.2f;
+                Stats.instance.socialX -= 0.2f;
 
                 break;
             case 6:
-                Stats.instance.MilitaX += 0.2f;
+                Stats.instance.militaX += 0.2f;
 
-                Stats.instance.DesenvolX -= 0.2f;
+                Stats.instance.desenvolX -= 0.2f;
 
                 break;
             #endregion
             #region Social
             case 7:
-                Stats.instance.SocialX += 0.2f;
+                Stats.instance.socialX += 0.2f;
 
-                Stats.instance.EconoX -= 0.2f;
+                Stats.instance.econoX -= 0.2f;
                 break;
             case 8:
-                Stats.instance.SocialX += 0.2f;
+                Stats.instance.socialX += 0.2f;
 
-                Stats.instance.MilitaX -= 0.2f;
+                Stats.instance.militaX -= 0.2f;
                 break;
             case 9:
-                Stats.instance.SocialX += 0.2f;
+                Stats.instance.socialX += 0.2f;
 
-                Stats.instance.DesenvolX -= 0.2f;
+                Stats.instance.desenvolX -= 0.2f;
                 break;
             #endregion
             #region Desenvolvimento
             case 10:
-                Stats.instance.DesenvolX += 0.2f;
+                Stats.instance.desenvolX += 0.2f;
 
-                Stats.instance.EconoX -= 0.2f;
+                Stats.instance.econoX -= 0.2f;
                 break;
             case 11:
-                Stats.instance.DesenvolX += 0.2f;
+                Stats.instance.desenvolX += 0.2f;
 
-                Stats.instance.MilitaX -= 0.2f;
+                Stats.instance.militaX -= 0.2f;
                 break;
             case 12:
-                Stats.instance.DesenvolX += 0.2f;
+                Stats.instance.desenvolX += 0.2f;
 
-                Stats.instance.SocialX -= 0.2f;
+                Stats.instance.socialX -= 0.2f;
                 break;
                 #endregion
         }
