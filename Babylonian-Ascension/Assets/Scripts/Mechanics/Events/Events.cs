@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class Events : MonoBehaviour
 {
+    public GameObject painel;
+    public TMP_Text eventos, button1, button2, button3;
     [Header("Eventos:")]
     [Space(20)]
 
@@ -53,8 +54,25 @@ public class Events : MonoBehaviour
     public UnityEvent Epidemia;
 
     public static Events instance;
+
     void Awake()
     {
         instance = this;
+    }
+    public void SetText(string text)
+    {
+        eventos.text = text;
+    }
+    public void SetTextB1(string text)
+    {
+        button1.text = text;
+    }
+    public void SetTextB2(string text)
+    {
+        button2.text = text;
+    }
+    public void SetTextB3(string text)
+    {
+        button3.text = text;
     }
 }

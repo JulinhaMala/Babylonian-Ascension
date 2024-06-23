@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public enum PassedEvents
@@ -10,9 +7,6 @@ public enum PassedEvents
 
 public class EventTimer : MonoBehaviour
 {
-    public TMP_Text explain_Text;
-    public TMP_Text option1, option2, option3;
-
     PassedEvents eventsPassed;
 
     public static EventTimer instance;
@@ -25,6 +19,12 @@ public class EventTimer : MonoBehaviour
         switch (eventsPassed)
         {
             case PassedEvents.none:
+                break;
+            case PassedEvents.invasao:
+                break;
+            case PassedEvents.escassez:
+                break;
+            case PassedEvents.doenca:
                 break;
         }
     }
