@@ -13,7 +13,7 @@ public class Stats : MonoBehaviour
     [SerializeField] int timeToPassDay = 20;
     float actualTime;
 
-    public void Start()
+    public void Awake()
     {
         instance = this;
         Max();
