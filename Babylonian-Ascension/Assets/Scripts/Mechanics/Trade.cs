@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public enum Add
+enum Add
 {
     eco, mil, soc, des
 }
-public enum Sub
+enum Sub
 {
     eco, mil, soc, des
 }

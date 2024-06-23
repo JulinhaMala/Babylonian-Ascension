@@ -1,14 +1,19 @@
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class ConsillButtons : MonoBehaviour
 {
-    [SerializeField] TMP_Text text;
     public int caso;
-    //public float Econo, Milita, Social, Desenvol;
+    int casoAnt;
     public void Aleatorizate(TMP_Text button)
     {
         caso = Random.Range(1, 12);
+        while (caso == casoAnt)
+        {
+            caso = Random.Range(1, 12);
+        }
+        casoAnt = caso;
         switch (caso)
         {
             #region Economia

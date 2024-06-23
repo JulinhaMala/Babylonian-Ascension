@@ -13,14 +13,14 @@ public class Days : MonoBehaviour
         instance = this;
         passDayAnim.SetActive(false);
         currentDay = 1;
-        days_Txt.text = $"Você está no dia {currentDay}";
+        days_Txt.text = $"Você está no: Dia {currentDay}";
     }
     public void PassDay()
     {
         EventsButtons.instance.curentTime = 0;
         daysPassed++;
         currentDay++;
-        days_Txt.text = $"Você está no dia {currentDay}";
+        days_Txt.text = $"Você está no: Dia {currentDay}";
         Trade.instance.timesUsed = 0;
         passDayAnim.SetActive(true);
     }
