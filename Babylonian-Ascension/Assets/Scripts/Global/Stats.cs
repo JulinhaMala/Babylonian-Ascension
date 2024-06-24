@@ -48,6 +48,7 @@ public class Stats : MonoBehaviour
             milita += militaX;
             social += socialX;
             desenvol += desenvolX;
+            Trade.instance.Reset();
             Days.instance.PassDay();
             actualTime = 0;
         }

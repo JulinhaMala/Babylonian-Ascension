@@ -150,4 +150,8 @@ public class Trade : MonoBehaviour
                 break;
         }
     }
+    public void Reset()
+    {
+        timesUsed = 0;
+    }
 }

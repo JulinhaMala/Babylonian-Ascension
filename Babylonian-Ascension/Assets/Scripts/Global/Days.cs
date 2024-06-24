@@ -18,10 +18,10 @@ public class Days : MonoBehaviour
     public void PassDay()
     {
         EventsButtons.instance.curentTime = 0;
+        Trade.instance.Reset();
         daysPassed++;
         currentDay++;
         days_Txt.text = $"Você está no: Dia {currentDay}";
-        Trade.instance.timesUsed = 0;
         passDayAnim.SetActive(true);
     }
     public void DeactivateAnim()

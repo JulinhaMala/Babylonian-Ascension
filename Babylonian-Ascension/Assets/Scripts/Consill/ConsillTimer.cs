@@ -3,9 +3,9 @@ using UnityEngine.Events;
 
 public class ConsillTimer : MonoBehaviour
 {
+    public int timer = 5;
     public UnityEvent SetActive;
     float time;
-    int timer = 5;
 
     private void FixedUpdate()
     {
