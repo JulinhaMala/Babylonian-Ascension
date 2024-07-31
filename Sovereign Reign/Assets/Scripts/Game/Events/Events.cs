@@ -12,6 +12,7 @@ public class Events : MonoBehaviour
     public UnityEvent Escassez;
     [Space(15)]
     public UnityEvent Doenca;
+
     void Awake()
     {
         instance = this;

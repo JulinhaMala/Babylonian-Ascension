@@ -14,16 +14,6 @@ public class EventsButtons : MonoBehaviour
     {
         instance = this;
     }
-    private void FixedUpdate()
-    {
-        curentTime += Time.deltaTime;
-        if (curentTime >= time)
-        {
-            RandomEvent();
-            Time.timeScale = 0;
-            curentTime = 0;
-        }
-    }
 
     public void Event(int button)
     {
@@ -99,13 +89,15 @@ public class EventsButtons : MonoBehaviour
     public void Exit()
     {
         Time.timeScale = 1;
+        EventTimer.instance.time = 0;
         Events.instance.painel.SetActive(false);
     }
 
     #endregion
     public void RandomEvent()
     {
-        int i = Random.Range(1, 4);
+        Time.timeScale = 0;
+        int i = Random.Range(1, 3);
         switch (i)
         {
             case 1:
