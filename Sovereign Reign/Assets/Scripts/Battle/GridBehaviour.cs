@@ -44,4 +44,30 @@ public class GridBehaviour : MonoBehaviour
         }
         gridArray[startX,startY].GetComponent<GridStat>().visited = 0;
     }
+    bool TestDurectuib(int x, int y, int step, int direction)
+    {
+        switch(direction)
+        {
+            case 1:
+                if (y+1 <rows && gridArray[x,y+1] && gridArray[x,y+1].GetComponent<GridStat>().visited == step)
+                return true;
+                else
+                    return false;
+            case 2:
+                if (x + 1 < columns && gridArray[x+1, y] && gridArray[x + 1, y].GetComponent<GridStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 3:
+                if (y - 1 < -1 && gridArray[x, y - 1] && gridArray[x, y + 1].GetComponent<GridStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 4:
+                if (x-1 >-1 && gridArray[x+1, y] && gridArray[x+1, y].GetComponent<GridStat>().visited == step)
+                    return true;
+                else
+                    return false;
+        }
+    }
 }
