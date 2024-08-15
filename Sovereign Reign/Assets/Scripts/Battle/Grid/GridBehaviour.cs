@@ -14,15 +14,13 @@ public class GridBehaviour : MonoBehaviour {
     }
 
     public enum GridType {
-        passable,
-        nonPassable,
-        highGrownd
+        water, ground, lowHighGround, midHighGround, highGround
     }
 
     public int Rows = 0;
     public int Columns = 0;
     public int Scale = 1;
-    public GameObject GridPrefab;    
+    public GameObject[] GridPrefab;    
     public GameObject[,] GridArray;
 
     void SetDistance(int fromX, int fromY) {
@@ -147,11 +145,6 @@ public class GridBehaviour : MonoBehaviour {
     }
 
     public void GenerateGrid(int[,] map, Vector3 startPosition) {
-        // check that we can instantiate a grid object
-        if (!GridPrefab) {
-            print("Missing GridPrefab, please assign.");
-            return;
-        }
 
         // assign the rows & columns properties based on our grid map size
         Rows = map.GetLength(1);
@@ -166,30 +159,68 @@ public class GridBehaviour : MonoBehaviour {
                 // find out what should be at this position
                 int mapObj = map[i, j];
                 switch (mapObj) {
-                    case (int)GridType.passable:
-                        // instantiate our grid object & assign position
-                        GameObject obj = Instantiate(GridPrefab, new Vector3(startPosition.x + Scale * i, startPosition.y, startPosition.z + Scale * j), Quaternion.identity);
-                        obj.name = $"grid-x{i}-y{j}";
-                        obj.transform.SetParent(gameObject.transform);
-                        obj.GetComponent<GridStats>().X = i;
-                        obj.GetComponent<GridStats>().Y = j;
+                    case (int)GridType.ground:
+                        print("ground");
 
-                        // add to grid once instantiated
-                        GridArray[i, j] = obj;
+                        // instantiate our grid object & assign position
+                        GameObject ground = Instantiate(GridPrefab[1], new Vector3(startPosition.x + Scale * i, startPosition.y, startPosition.z + Scale * j), Quaternion.identity);
+                        ground.name = $"grid-x{i}-y{j}";
+                        ground.transform.SetParent(gameObject.transform);
+                        ground.GetComponent<GridStats>().X = i;
+                        ground.GetComponent<GridStats>().Y = j;
+                        ground.GetComponent<GridStats>().walkable = true;
+                        GridArray[i, j] = ground;
                         break;
-                    case (int)GridType.nonPassable:
+                    case (int)GridType.water:
+                        print("water");
+
+                        GameObject water = Instantiate(GridPrefab[0], new Vector3(startPosition.x + Scale * i, startPosition.y - 0.5f, startPosition.z + Scale * j), Quaternion.identity);
+                        water.name = $"grid-x{i}-y{j}-z1";
+                        water.transform.SetParent(gameObject.transform);
+                        water.GetComponent<GridStats>().X = i;
+                        water.GetComponent<GridStats>().Y = j;
+                        water.GetComponent<GridStats>().walkable = false;
+
+                        //GridArray[i, j] = water;
                         break;
-                    case (int)GridType.highGrownd:
-                        print("High");
-                        GameObject Obj = Instantiate(GridPrefab, new Vector3(startPosition.x + Scale * i, 10, startPosition.z + Scale * j), Quaternion.identity);
-                        Obj.name = $"grid-x{i}-y{j}-z1";
-                        Obj.transform.SetParent(gameObject.transform);
-                        Obj.GetComponent<GridStats>().X = i;
-                        Obj.GetComponent<GridStats>().Y = j;
-                        GridArray[i, j] = Obj;
+                    case (int)GridType.lowHighGround:
+                        print("lowHighGround");
+
+                        GameObject lowHighGround = Instantiate(GridPrefab[2], new Vector3(startPosition.x + Scale * i, startPosition.y + 0.5f, startPosition.z + Scale * j), Quaternion.identity);
+                        lowHighGround.name = $"grid-x{i}-y{j}-z1";
+                        lowHighGround.transform.SetParent(gameObject.transform);
+                        lowHighGround.GetComponent<GridStats>().X = i;
+                        lowHighGround.GetComponent<GridStats>().Y = j;
+                        lowHighGround.GetComponent<GridStats>().walkable = true;
+
+                        GridArray[i, j] = lowHighGround;
                         break;
-                    default:
+                    case (int)GridType.midHighGround:
+                        print("midHighGround");
+
+                        GameObject midHighGround = Instantiate(GridPrefab[3], new Vector3(startPosition.x + Scale * i, startPosition.y + 1f, startPosition.z + Scale * j), Quaternion.identity);
+                        midHighGround.name = $"grid-x{i}-y{j}-z1";
+                        midHighGround.transform.SetParent(gameObject.transform);
+                        midHighGround.GetComponent<GridStats>().X = i;
+                        midHighGround.GetComponent<GridStats>().Y = j;
+                        midHighGround.GetComponent<GridStats>().walkable = true;
+
+                        GridArray[i, j] = midHighGround;
                         break;
+                    case (int)GridType.highGround:
+                        print("highGround");
+
+                        GameObject highGround = Instantiate(GridPrefab[4], new Vector3(startPosition.x + Scale * i, startPosition.y + 1.5f, startPosition.z + Scale * j), Quaternion.identity);
+                        highGround.name = $"grid-x{i}-y{j}-z1";
+                        highGround.transform.SetParent(gameObject.transform);
+                        highGround.GetComponent<GridStats>().X = i;
+                        highGround.GetComponent<GridStats>().Y = j;
+                        highGround.GetComponent<GridStats>().walkable = true;
+
+                        GridArray[i, j] = highGround;
+                        break;
+
+                    default: break;
                 }
             }
         }

@@ -7,7 +7,7 @@ public class CharacterBehaviour : MonoBehaviour {
     private Stack<GameObject> _currentPath = new Stack<GameObject>();
 
     [Header("Movement Settings")]
-    public int MaxMovements = 100;
+    public int MaxMovements = 3;
     public float MoveSpeed = 10;
 
     void Update() {
