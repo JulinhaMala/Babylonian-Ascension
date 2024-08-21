@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour {
 
-    private Stack<GameObject> _currentPath = new Stack<GameObject>();
+    Stack<GameObject> _currentPath = new Stack<GameObject>();
+    GameObject[] _possiblePath;
 
     [Header("Movement Settings")]
     public int MaxMovements = 3;
@@ -34,6 +35,12 @@ public class CharacterBehaviour : MonoBehaviour {
                 // push the values into our stack
                 // then our update function within this script will begin to move our character!
                 _currentPath.Push(path[i]);
+                if (_currentPath.Count-2 >= MaxMovements)
+                {
+                    ClearPath();
+                    print("Too Long");
+                    break;
+                }
             }
         } else {
             print("Could not find GridManager object within scene.");
@@ -44,6 +51,7 @@ public class CharacterBehaviour : MonoBehaviour {
         // find our grid manager in our scene
         var gridManager = GameObject.FindGameObjectWithTag("GridManager");
         if (gridManager) {
+            
             // use our grid manager to calculate the best route to a specific position
             var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(gameObject.transform, targetPosition, MaxMovements);
             for (int i = 0; i < path.Count; i++) {
@@ -52,6 +60,37 @@ public class CharacterBehaviour : MonoBehaviour {
                 _currentPath.Push(path[i]);
             }
         } else {
+            print("Could not find GridManager object within scene.");
+        }
+    }
+
+    public void ClearPath()
+    {
+        _currentPath = new Stack<GameObject>();
+    }
+
+    public void PlainToPosition(int toX, int toY, MeshRenderer renderer, Material can, Material cant)
+    {
+        // find our grid manager in our scene
+        var gridManager = GameObject.FindGameObjectWithTag("GridManager");
+        if (gridManager)
+        {
+            // use our grid manager to calculate the best route to a specific position
+            var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(gameObject.transform, toX, toY, MaxMovements);
+            for (int i = 0; i < path.Count; i++)
+            {
+                // push the values into our stack
+                // then our update function within this script will begin to move our character!
+                renderer.material = can;
+                if (_possiblePath.Length - 2 >= MaxMovements)
+                {
+                    renderer.material = cant;
+                    break;
+                }
+            }
+        }
+        else
+        {
             print("Could not find GridManager object within scene.");
         }
     }

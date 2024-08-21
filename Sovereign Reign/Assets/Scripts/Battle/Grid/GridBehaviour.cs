@@ -236,6 +236,10 @@ public class GridBehaviour : MonoBehaviour {
     }
 
     public List<GameObject> GetPathToPosition(Transform from, int toX, int toY, int maximumSteps) {
+        if (true)
+        {
+
+        }
         var startX = (int)from.position.x;
         var startY = (int)from.position.z;
 

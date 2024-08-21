@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GridStats : MonoBehaviour {
 
@@ -9,11 +7,13 @@ public class GridStats : MonoBehaviour {
     public int Y = 0;
     public bool walkable;
 
-    void Start() {
-        
-    }
-
-    void Update() {
-        
+    public void MoveToPosition()
+    {
+        // get the player on the field
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player)
+        {
+            player.GetComponent<CharacterBehaviour>().MoveToPosition(X, Y);
+        }
     }
 }
