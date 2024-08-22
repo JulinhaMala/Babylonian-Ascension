@@ -25,6 +25,7 @@ public class LevelBehaviour : MonoBehaviour {
 
     public GameObject GridManagerPrefab;
     public GameObject CharacterPrefab;
+    public GameObject EnemyPrefab;
     
     void Awake() {
             
@@ -33,6 +34,7 @@ public class LevelBehaviour : MonoBehaviour {
         // place character/player into the world
         if (CharacterPrefab) {
             GeneratePlayer();
+            GenerateEnemy();
         } else {
             print("Missing Character, please assign.");
         }
@@ -44,6 +46,11 @@ public class LevelBehaviour : MonoBehaviour {
     void GeneratePlayer() {
         // todo; we want to use our level id or something to place player/character into world
         Instantiate(CharacterPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
+    void GenerateEnemy()
+    {
+        Instantiate(EnemyPrefab, new Vector3(14, 0, 14), Quaternion.identity);
     }
 
     void GenerateLevel() {

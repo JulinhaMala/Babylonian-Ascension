@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 253342255}
   - component: {fileID: 253342256}
   - component: {fileID: 253342257}
+  - component: {fileID: 253342258}
   m_Layer: 0
   m_Name: Level Manager
   m_TagString: LevelManager
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridManagerPrefab: {fileID: 1064412321993336597, guid: 939b174483d7e7c43a026676bbd539bf, type: 3}
   CharacterPrefab: {fileID: 9032413009077881288, guid: a981eaf52a8deb54f9582b3f37ce7387, type: 3}
+  EnemyPrefab: {fileID: 8912180247684594004, guid: 2bcd5a4964149884faeeb46a7eaf9df8, type: 3}
 --- !u!114 &253342257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +187,18 @@ MonoBehaviour:
   movement: 0200000003000000040000000500000006000000
   life: 0000000000000000000000000000000000000000
   damage: 0000000000000000000000000000000000000000
+--- !u!114 &253342258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253342254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bb11c52747757419132dfb37c686af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &361725024
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +374,7 @@ GameObject:
   - component: {fileID: 850825412}
   - component: {fileID: 850825410}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Mouse
   m_TagString: Mouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,7 +454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850825409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6153946, y: -15.815496, z: 13.512018}
+  m_LocalPosition: {x: 53.5, y: 0, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
