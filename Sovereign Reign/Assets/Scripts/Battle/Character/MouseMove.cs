@@ -4,7 +4,7 @@ public class MouseMove : MonoBehaviour
 {
     public GameObject destiny;
     public MeshRenderer render;
-    public Material[] materials;
+    public Material wrong, correct;
 
     void Update()
     {
@@ -20,8 +20,8 @@ public class MouseMove : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player)
             {
-                player.GetComponent<CharacterBehaviour>().ClearPath();
-                player.GetComponent<CharacterBehaviour>().PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, materials[0], materials[1]);
+                player.GetComponent<CharacterBehaviour>().ClearPlain();
+                player.GetComponent<CharacterBehaviour>().PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong);
             }
         }
         if (Input.GetMouseButtonDown(0))

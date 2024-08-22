@@ -10,6 +10,8 @@ public class Stats : MonoBehaviour
     public float maxEcono, maxMilita, maxSocial, maxDesenvol;
     public float econoX, militaX, socialX, desenvolX;
 
+    public static float econoS, militaS, socialS, desenvolS;
+
     [SerializeField] int timeToPassDay = 20;
     float actualTime;
 
@@ -21,7 +23,7 @@ public class Stats : MonoBehaviour
         Increase();
     }
 
-    #region StartStatistics
+    #region Start Statistics
     public void Max()
     {
         maxEcono = 100; maxMilita = 100; maxSocial = 100; maxDesenvol = 100;
@@ -37,10 +39,16 @@ public class Stats : MonoBehaviour
         econoX = 3; militaX = 3; socialX = 3; desenvolX = 3;
     }
     #endregion
+    
+    void Static()
+    {
+        econoS = econo; militaS = milita; socialS = social; desenvolS = desenvol;
+    }
 
     private void FixedUpdate()
     {
         actualTime += Time.deltaTime;
+        Static();
         if (actualTime >= timeToPassDay) 
         {
             print("StatsUP");

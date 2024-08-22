@@ -5,6 +5,7 @@ public class GridStats : MonoBehaviour {
     public int Visited = -1;
     public int X = 0;
     public int Y = 0;
+    public int Z = 0;
     public bool walkable;
 
     public void MoveToPosition()

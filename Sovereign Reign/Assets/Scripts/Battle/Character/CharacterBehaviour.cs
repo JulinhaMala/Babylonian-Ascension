@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterBehaviour : MonoBehaviour {
 
     Stack<GameObject> _currentPath = new Stack<GameObject>();
-    GameObject[] _possiblePath;
+    Stack<GameObject> _possiblePath = new Stack<GameObject>();
 
     [Header("Movement Settings")]
     public int MaxMovements = 3;
@@ -81,8 +81,9 @@ public class CharacterBehaviour : MonoBehaviour {
             {
                 // push the values into our stack
                 // then our update function within this script will begin to move our character!
+                _possiblePath.Push(path[i]);
                 renderer.material = can;
-                if (_possiblePath.Length - 2 >= MaxMovements)
+                if (_possiblePath.Count - 2 >= MaxMovements)
                 {
                     renderer.material = cant;
                     break;
@@ -93,5 +94,9 @@ public class CharacterBehaviour : MonoBehaviour {
         {
             print("Could not find GridManager object within scene.");
         }
+    }
+    public void ClearPlain()
+    {
+        _possiblePath = new Stack<GameObject>();
     }
 }

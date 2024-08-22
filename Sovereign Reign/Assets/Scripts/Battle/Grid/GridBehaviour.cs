@@ -159,6 +159,18 @@ public class GridBehaviour : MonoBehaviour {
                 // find out what should be at this position
                 int mapObj = map[i, j];
                 switch (mapObj) {
+                    case (int)GridType.water:
+                        print("water");
+
+                        GameObject water = Instantiate(GridPrefab[0], new Vector3(startPosition.x + Scale * i, startPosition.y - 0.5f, startPosition.z + Scale * j), Quaternion.identity);
+                        water.name = $"grid-x{i}-y{j}-z1";
+                        water.transform.SetParent(gameObject.transform);
+                        water.GetComponent<GridStats>().X = i;
+                        water.GetComponent<GridStats>().Y = j;
+                        water.GetComponent<GridStats>().Z = -1;
+                        water.GetComponent<GridStats>().walkable = false;
+                        break;
+
                     case (int)GridType.ground:
                         print("ground");
 
@@ -171,18 +183,7 @@ public class GridBehaviour : MonoBehaviour {
                         ground.GetComponent<GridStats>().walkable = true;
                         GridArray[i, j] = ground;
                         break;
-                    case (int)GridType.water:
-                        print("water");
 
-                        GameObject water = Instantiate(GridPrefab[0], new Vector3(startPosition.x + Scale * i, startPosition.y - 0.5f, startPosition.z + Scale * j), Quaternion.identity);
-                        water.name = $"grid-x{i}-y{j}-z1";
-                        water.transform.SetParent(gameObject.transform);
-                        water.GetComponent<GridStats>().X = i;
-                        water.GetComponent<GridStats>().Y = j;
-                        water.GetComponent<GridStats>().walkable = false;
-
-                        //GridArray[i, j] = water;
-                        break;
                     case (int)GridType.lowHighGround:
                         print("lowHighGround");
 
@@ -191,6 +192,7 @@ public class GridBehaviour : MonoBehaviour {
                         lowHighGround.transform.SetParent(gameObject.transform);
                         lowHighGround.GetComponent<GridStats>().X = i;
                         lowHighGround.GetComponent<GridStats>().Y = j;
+                        lowHighGround.GetComponent<GridStats>().Z = 1;
                         lowHighGround.GetComponent<GridStats>().walkable = true;
 
                         GridArray[i, j] = lowHighGround;
@@ -199,10 +201,11 @@ public class GridBehaviour : MonoBehaviour {
                         print("midHighGround");
 
                         GameObject midHighGround = Instantiate(GridPrefab[3], new Vector3(startPosition.x + Scale * i, startPosition.y + 1f, startPosition.z + Scale * j), Quaternion.identity);
-                        midHighGround.name = $"grid-x{i}-y{j}-z1";
+                        midHighGround.name = $"grid-x{i}-y{j}-z2";
                         midHighGround.transform.SetParent(gameObject.transform);
                         midHighGround.GetComponent<GridStats>().X = i;
                         midHighGround.GetComponent<GridStats>().Y = j;
+                        midHighGround.GetComponent<GridStats>().Z = 2;
                         midHighGround.GetComponent<GridStats>().walkable = true;
 
                         GridArray[i, j] = midHighGround;
@@ -211,10 +214,11 @@ public class GridBehaviour : MonoBehaviour {
                         print("highGround");
 
                         GameObject highGround = Instantiate(GridPrefab[4], new Vector3(startPosition.x + Scale * i, startPosition.y + 1.5f, startPosition.z + Scale * j), Quaternion.identity);
-                        highGround.name = $"grid-x{i}-y{j}-z1";
+                        highGround.name = $"grid-x{i}-y{j}-z3";
                         highGround.transform.SetParent(gameObject.transform);
                         highGround.GetComponent<GridStats>().X = i;
                         highGround.GetComponent<GridStats>().Y = j;
+                        highGround.GetComponent<GridStats>().Z = 3;
                         highGround.GetComponent<GridStats>().walkable = true;
 
                         GridArray[i, j] = highGround;
@@ -236,17 +240,13 @@ public class GridBehaviour : MonoBehaviour {
     }
 
     public List<GameObject> GetPathToPosition(Transform from, int toX, int toY, int maximumSteps) {
-        if (true)
-        {
-
-        }
         var startX = (int)from.position.x;
         var startY = (int)from.position.z;
 
         return GetPath(startX, startY, toX, toY);
     }
 
-    public List<GameObject> GetAvailablePositions(Transform currentPosition, int maximumSteps) {
+    List<GameObject> GetAvailablePositions(Transform currentPosition, int maximumSteps) {
         var startX = (int)currentPosition.position.x;
         var startY = (int)currentPosition.position.z;
 
