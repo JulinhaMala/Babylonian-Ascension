@@ -160,7 +160,6 @@ public class GridBehaviour : MonoBehaviour {
                 int mapObj = map[i, j];
                 switch (mapObj) {
                     case (int)GridType.water:
-                        print("water");
 
                         GameObject water = Instantiate(GridPrefab[0], new Vector3(startPosition.x + Scale * i, startPosition.y - 0.5f, startPosition.z + Scale * j), Quaternion.identity);
                         water.name = $"grid-x{i}-y{j}-z1";
@@ -172,7 +171,6 @@ public class GridBehaviour : MonoBehaviour {
                         break;
 
                     case (int)GridType.ground:
-                        print("ground");
 
                         // instantiate our grid object & assign position
                         GameObject ground = Instantiate(GridPrefab[1], new Vector3(startPosition.x + Scale * i, startPosition.y, startPosition.z + Scale * j), Quaternion.identity);
@@ -185,7 +183,6 @@ public class GridBehaviour : MonoBehaviour {
                         break;
 
                     case (int)GridType.lowHighGround:
-                        print("lowHighGround");
 
                         GameObject lowHighGround = Instantiate(GridPrefab[2], new Vector3(startPosition.x + Scale * i, startPosition.y + 0.5f, startPosition.z + Scale * j), Quaternion.identity);
                         lowHighGround.name = $"grid-x{i}-y{j}-z1";
@@ -198,7 +195,6 @@ public class GridBehaviour : MonoBehaviour {
                         GridArray[i, j] = lowHighGround;
                         break;
                     case (int)GridType.midHighGround:
-                        print("midHighGround");
 
                         GameObject midHighGround = Instantiate(GridPrefab[3], new Vector3(startPosition.x + Scale * i, startPosition.y + 1f, startPosition.z + Scale * j), Quaternion.identity);
                         midHighGround.name = $"grid-x{i}-y{j}-z2";
@@ -211,7 +207,6 @@ public class GridBehaviour : MonoBehaviour {
                         GridArray[i, j] = midHighGround;
                         break;
                     case (int)GridType.highGround:
-                        print("highGround");
 
                         GameObject highGround = Instantiate(GridPrefab[4], new Vector3(startPosition.x + Scale * i, startPosition.y + 1.5f, startPosition.z + Scale * j), Quaternion.identity);
                         highGround.name = $"grid-x{i}-y{j}-z3";

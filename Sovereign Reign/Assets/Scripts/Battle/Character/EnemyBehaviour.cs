@@ -23,7 +23,6 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void Update() {
         if (Turns.actualTurn == Turn.enemy)
-        {
             if (_currentPath.Count > 0)
             {
                 // peek at the next targets location & move towards
@@ -31,12 +30,23 @@ public class EnemyBehaviour : MonoBehaviour {
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, MoveSpeed * Time.deltaTime);
 
                 // remove from the path stack when we reach desired location
-                if (target.transform.position.x == gameObject.transform.position.x && target.transform.position.z == gameObject.transform.position.z)
+                if (MaxMovements > 0)
                 {
-                    _currentPath.Pop();
+                    if (target.transform.position.x == gameObject.transform.position.x && target.transform.position.z == gameObject.transform.position.z)
+                    {
+                        _currentPath.Pop();
+                        MaxMovements--;
+                    }
+                }
+                
+
+                if (MaxMovements < 0)
+                {
+                    Turns.endedTurn = true;
+                    Turns.PassTurn();
                 }
             }
-        }
+        
         // check movement stack to see if we need to move the character
     }
 
@@ -46,29 +56,6 @@ public class EnemyBehaviour : MonoBehaviour {
         if (gridManager) {
             // use our grid manager to calculate the best route to a specific position
             var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(gameObject.transform, toX, toY, MaxMovements);
-            for (int i = 0; i < path.Count; i++) {
-                // push the values into our stack
-                // then our update function within this script will begin to move our character!
-                _currentPath.Push(path[i]);
-                if (_currentPath.Count-2 >= MaxMovements)
-                {
-                    ClearPath();
-                    print("Too Long");
-                    break;
-                }
-            }
-        } else {
-            print("Could not find GridManager object within scene.");
-        }
-    }
-
-    public void MoveToPosition(Transform targetPosition) {
-        // find our grid manager in our scene
-        var gridManager = GameObject.FindGameObjectWithTag("GridManager");
-        if (gridManager) {
-            
-            // use our grid manager to calculate the best route to a specific position
-            var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(gameObject.transform, targetPosition, MaxMovements);
             for (int i = 0; i < path.Count; i++) {
                 // push the values into our stack
                 // then our update function within this script will begin to move our character!

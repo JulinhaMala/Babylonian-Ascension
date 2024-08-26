@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour {
@@ -42,7 +43,8 @@ public class CharacterBehaviour : MonoBehaviour {
                     break;
                 }
             }
-        } else {
+        } 
+        else {
             print("Could not find GridManager object within scene.");
         }
     }
@@ -60,6 +62,10 @@ public class CharacterBehaviour : MonoBehaviour {
         {
             // use our grid manager to calculate the best route to a specific position
             var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(gameObject.transform, toX, toY, MaxMovements);
+            if (path == null || path.Count < 0)
+            {   
+                return;
+            }
             for (int i = 0; i < path.Count; i++)
             {
                 // push the values into our stack
