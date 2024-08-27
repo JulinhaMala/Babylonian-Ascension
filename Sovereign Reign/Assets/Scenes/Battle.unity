@@ -392,7 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ea628568e691f4e88391289f5423f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pastPosition: {fileID: 0}
   destiny: {fileID: 850825409}
   render: {fileID: 850825412}
   wrong: {fileID: 2100000, guid: c8087c505befa2c4aa5601d109a7f306, type: 2}
