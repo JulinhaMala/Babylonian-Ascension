@@ -12,6 +12,8 @@ public class CharacterBehaviour : MonoBehaviour {
     public int MaxMovements = 3;
     public float MoveSpeed = 10;
 
+    public bool hadMove;
+
     void Update() {
         // check movement stack to see if we need to move the character
         if (_currentPath.Count > 0) {
@@ -22,6 +24,12 @@ public class CharacterBehaviour : MonoBehaviour {
             // remove from the path stack when we reach desired location
             if (target.transform.position.x == gameObject.transform.position.x && target.transform.position.z == gameObject.transform.position.z) {
                 _currentPath.Pop();
+            }
+
+            if (_currentPath.Count <= 0)
+            {
+                print("Moveu");
+                hadMove = true;
             }
         }
     }
