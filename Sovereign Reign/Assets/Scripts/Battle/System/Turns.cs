@@ -17,20 +17,17 @@ public class Turns : MonoBehaviour
             actualTurn++;
             if (actualTurn > Turn.enemy)
             {
-                print(actualTurn);
                 actualTurn = 0;
             }
+            endedTurn = false;
             if (actualTurn == Turn.enemy)
             {
-                print(actualTurn);
                 EnemyBehaviour.instance.StartEnemyTurn();
             }
             if (actualTurn == Turn.player)
             {
-                print(actualTurn);
                 MouseMove.canMove = true;
             }
-            endedTurn = false;
         }
     }
 }

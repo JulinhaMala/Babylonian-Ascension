@@ -35,7 +35,7 @@ public class MouseMove : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {
                     render.gameObject.SetActive(true);
-                    if (raycastHit.collider.CompareTag("Water"))
+                        if (raycastHit.collider.CompareTag("Water"))
                         {
                             return;
                         }
