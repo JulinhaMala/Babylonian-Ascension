@@ -39,6 +39,7 @@ public class EnemyBehaviour : MonoBehaviour {
                     }
                 }
                 
+
                 if (MaxMovements < 0)
                 {
                     Turns.endedTurn = true;

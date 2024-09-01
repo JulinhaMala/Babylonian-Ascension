@@ -109,6 +109,7 @@ public class GridBehaviour : MonoBehaviour {
             path.Add(GridArray[x, y]);
             step = GridArray[x, y].GetComponent<GridStats>().Visited - 1;
         } else {
+            print("Can't reach the desired location.");
             return null;
         }
 

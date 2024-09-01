@@ -18,19 +18,10 @@ public class MouseMove : MonoBehaviour
             canMove = true;
             hasInicied = false;
         }
-        if (Turns.actualTurn == Turn.player)
+        if (Turns.actualTurn != Turn.player)
         {
-            if (player.GetComponent<CharacterBehaviour>().hadMove)
-            {
-                print("já foi");
-                render.gameObject.SetActive(false);
-                Turns.endedTurn = true;
-                canMove = false;
-                player.GetComponent<CharacterBehaviour>().hadMove = false;
-            }
             if (canMove)
             {
-                
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {
@@ -53,14 +44,17 @@ public class MouseMove : MonoBehaviour
                             {
                                 player.GetComponent<CharacterBehaviour>().ClearPath();
                                 player.GetComponent<CharacterBehaviour>().MoveToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z);
+                                render.gameObject.SetActive(false);
+                                Turns.endedTurn = true;
+                                canMove = false;
                             }
                         }
                 }
-            }   
-        } 
-        if (canMove == false)
-        {
-            return;
+            }
+            if (!canMove)
+            {
+                return;
+            }
         }
     }
 }
