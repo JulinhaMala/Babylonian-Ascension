@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rows: 10
   Columns: 10
-  Scale: 1
+  Scale: 4
   GridPrefab:
   - {fileID: 7943455335895840590, guid: 91efda412bcd73942af493526e5e7b08, type: 3}
   - {fileID: 7943455335895840590, guid: fa9f1b2f208ec2d4a80642e8acc20ae7, type: 3}

@@ -160,7 +160,7 @@ public class GridBehaviour : MonoBehaviour {
                 switch (mapObj) {
                     case (int)GridType.water:
 
-                        GameObject water = Instantiate(GridPrefab[0], new Vector3(startPosition.x + Scale * i, startPosition.y - 0.5f, startPosition.z + Scale * j), Quaternion.identity);
+                        GameObject water = Instantiate(GridPrefab[0], new Vector3(startPosition.x + Scale * i, startPosition.y - 2f, startPosition.z + Scale * j), Quaternion.identity);
                         water.name = $"grid-x{i}-y{j}-z1";
                         water.transform.SetParent(gameObject.transform);
                         water.GetComponent<GridStats>().X = i;
@@ -183,7 +183,7 @@ public class GridBehaviour : MonoBehaviour {
 
                     case (int)GridType.lowHighGround:
 
-                        GameObject lowHighGround = Instantiate(GridPrefab[2], new Vector3(startPosition.x + Scale * i, startPosition.y + 0.5f, startPosition.z + Scale * j), Quaternion.identity);
+                        GameObject lowHighGround = Instantiate(GridPrefab[2], new Vector3(startPosition.x + Scale * i, startPosition.y + 2f, startPosition.z + Scale * j), Quaternion.identity);
                         lowHighGround.name = $"grid-x{i}-y{j}-z1";
                         lowHighGround.transform.SetParent(gameObject.transform);
                         lowHighGround.GetComponent<GridStats>().X = i;
@@ -195,7 +195,7 @@ public class GridBehaviour : MonoBehaviour {
                         break;
                     case (int)GridType.midHighGround:
 
-                        GameObject midHighGround = Instantiate(GridPrefab[3], new Vector3(startPosition.x + Scale * i, startPosition.y + 1f, startPosition.z + Scale * j), Quaternion.identity);
+                        GameObject midHighGround = Instantiate(GridPrefab[3], new Vector3(startPosition.x + Scale * i, startPosition.y + 4f, startPosition.z + Scale * j), Quaternion.identity);
                         midHighGround.name = $"grid-x{i}-y{j}-z2";
                         midHighGround.transform.SetParent(gameObject.transform);
                         midHighGround.GetComponent<GridStats>().X = i;
@@ -207,7 +207,7 @@ public class GridBehaviour : MonoBehaviour {
                         break;
                     case (int)GridType.highGround:
 
-                        GameObject highGround = Instantiate(GridPrefab[4], new Vector3(startPosition.x + Scale * i, startPosition.y + 1.5f, startPosition.z + Scale * j), Quaternion.identity);
+                        GameObject highGround = Instantiate(GridPrefab[4], new Vector3(startPosition.x + Scale * i, startPosition.y + 6f, startPosition.z + Scale * j), Quaternion.identity);
                         highGround.name = $"grid-x{i}-y{j}-z3";
                         highGround.transform.SetParent(gameObject.transform);
                         highGround.GetComponent<GridStats>().X = i;
