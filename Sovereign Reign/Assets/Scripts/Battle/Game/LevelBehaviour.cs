@@ -26,7 +26,8 @@ public class LevelBehaviour : MonoBehaviour {
     public GameObject GridManagerPrefab;
     public GameObject CharacterPrefab;
     public GameObject EnemyPrefab;
-    
+    public GameObject Explication;
+
     void Awake() {
             
         GenerateLevel();
@@ -38,9 +39,7 @@ public class LevelBehaviour : MonoBehaviour {
         } else {
             print("Missing Character, please assign.");
         }
-
-        // setup camera
-        SetupCamera();
+        Instantiate(Explication);
     }
 
     void GeneratePlayer() {
@@ -50,7 +49,7 @@ public class LevelBehaviour : MonoBehaviour {
 
     void GenerateEnemy()
     {
-        Instantiate(EnemyPrefab, new Vector3(36, 4, 53), Quaternion.identity);
+        Instantiate(EnemyPrefab, new Vector3(14, 2, 14), Quaternion.identity);
     }
 
     void GenerateLevel() {
@@ -60,15 +59,6 @@ public class LevelBehaviour : MonoBehaviour {
 
         // todo; want to grab some kind of game-manager object and load map based on level id
 
-        gridManager.GetComponent<GridBehaviour>().GenerateGrid(_tempMap, new Vector3(-20, 0, -3));
-    }
-
-    void SetupCamera() {
-        // we just want to grab the main camera and move it to be within view for now
-        // get the center of the grid
-        var rows = _tempMap.GetLength(1);
-        var columns = _tempMap.GetLength(0);
-
-        //Camera.main.transform.position = new Vector3(columns / 2, 20, rows / 2);
+        gridManager.GetComponent<GridBehaviour>().GenerateGrid(_tempMap, new Vector3(0, 0, 0));
     }
 }
