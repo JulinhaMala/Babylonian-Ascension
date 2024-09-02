@@ -75,7 +75,7 @@ public class MouseMove : MonoBehaviour
             {
                 hasChecked = false;
                 var path = FindObjectOfType<GridBehaviour>().GetComponent<GridBehaviour>().GetPathToPosition(player.transform, (int)enemy.transform.position.x, (int)enemy.transform.position.z, 3);
-                if (path.Count <= 4)
+                if (path.Count <= 5)
                 {
                     canAttack = true;
                 }
@@ -83,7 +83,21 @@ public class MouseMove : MonoBehaviour
             render.enabled = false;
             Turns.endedTurn = true;
             canMove = false;
-            
+            if (canAttack)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit raycastHit))
+                {
+                    if (raycastHit.collider.CompareTag("Enemy"))
+                    {
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            raycastHit.collider.SendMessage("TakeDamage", 5);
+                            canAttack = false;
+                        }
+                    }
+                }
+            }
             
         }
         if (!canMove)

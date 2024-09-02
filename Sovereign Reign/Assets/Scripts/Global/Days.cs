@@ -33,6 +33,7 @@ public class Days : MonoBehaviour
         if ( daysUntilInvasion < 0 )
         {
             SceneManager.LoadScene("Battle");
+            Stats.instance.SetBattle();
             daysUntilInvasion = 3;
         }
     }

@@ -15,6 +15,8 @@ public class Stats : MonoBehaviour
     [SerializeField] int timeToPassDay = 20;
     float actualTime;
 
+    public static bool hasBattled;
+
     public void Awake()
     {
         instance = this;
@@ -44,11 +46,24 @@ public class Stats : MonoBehaviour
     {
         econoS = econo; militaS = milita; socialS = social; desenvolS = desenvol;
     }
+    void BattleStats()
+    {
+        milita = militaS;
+    }
+
+    public void SetBattle()
+    {
+        hasBattled = true;
+    }
 
     private void FixedUpdate()
     {
+        if (hasBattled)
+        {
+            BattleStats();
+            hasBattled = false;
+        }
         actualTime += Time.deltaTime;
-        Static();
         if (actualTime >= timeToPassDay) 
         {
             print("StatsUP");
@@ -59,6 +74,7 @@ public class Stats : MonoBehaviour
             Trade.instance.Reset();
             Days.instance.PassDay();
             actualTime = 0;
+            Static();
         }
         if (econo <= 0 || milita <= 0 || social <= 0 || desenvol <= 0)
         {

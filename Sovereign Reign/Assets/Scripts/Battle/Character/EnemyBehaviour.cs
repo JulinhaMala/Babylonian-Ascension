@@ -9,6 +9,9 @@ public class EnemyBehaviour : MonoBehaviour {
     public int MaxMovements = 4;
     public float MoveSpeed = 10;
 
+    bool hasChecked = true;
+    bool canAttack = false;
+
     public static EnemyBehaviour instance;
 
     void Awake()
@@ -39,7 +42,21 @@ public class EnemyBehaviour : MonoBehaviour {
                     }
                     if (MaxMovements <= 0)
                     {
-                        ClearPath();                       
+                        GameObject player = GameObject.FindGameObjectWithTag("Player");
+                        ClearPath();
+                        if (hasChecked)
+                        {
+                            var gridManager = GameObject.FindGameObjectWithTag("GridManager");
+                            var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(player.transform, (int)transform.position.x, (int)transform.position.z, 3);
+                            if (path.Count <= 4)
+                            {
+                                canAttack = true;
+                            }
+                        }
+                        if (canAttack)
+                        {
+                            player.SendMessage("TakeDamage",5);
+                        }
                         Turns.endedTurn = true;
                         Turns.instance.PassTurn();
                 }
