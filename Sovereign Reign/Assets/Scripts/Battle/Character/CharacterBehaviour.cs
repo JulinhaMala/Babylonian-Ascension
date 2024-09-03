@@ -12,6 +12,8 @@ public class CharacterBehaviour : MonoBehaviour {
     public int MaxMovements = 3;
     public float MoveSpeed = 10;
 
+    public bool hasMoved;
+
     void Update() {
         // check movement stack to see if we need to move the character
         if (_currentPath.Count > 0) {
@@ -22,6 +24,11 @@ public class CharacterBehaviour : MonoBehaviour {
             // remove from the path stack when we reach desired location
             if (target.transform.position.x == gameObject.transform.position.x && target.transform.position.z == gameObject.transform.position.z) {
                 _currentPath.Pop();
+            }
+
+            if (_currentPath.Count == 0)
+            {
+                hasMoved = true;
             }
         }
     }
@@ -61,9 +68,10 @@ public class CharacterBehaviour : MonoBehaviour {
         if (gridManager)
         {
             // use our grid manager to calculate the best route to a specific position
+            
             var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(gameObject.transform, toX, toY, MaxMovements);
             if (path == null || path.Count < 0)
-            {   
+            {
                 return;
             }
             for (int i = 0; i < path.Count; i++)

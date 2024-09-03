@@ -8,6 +8,9 @@ TagManager:
   - GridManager
   - Water
   - Mouse
+  - Enemy
+  - Win
+  - Lose
   layers:
   - Default
   - TransparentFX

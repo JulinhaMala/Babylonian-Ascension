@@ -6,8 +6,11 @@ public class EnemyBehaviour : MonoBehaviour {
     Stack<GameObject> _currentPath = new Stack<GameObject>();
 
     [Header("Movement Settings")]
-    public int MaxMovements = 3;
+    public int MaxMovements = 4;
     public float MoveSpeed = 10;
+
+    bool hasChecked = true;
+    bool canAttack = false;
 
     public static EnemyBehaviour instance;
 
@@ -18,7 +21,8 @@ public class EnemyBehaviour : MonoBehaviour {
     public void StartEnemyTurn()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        MoveToPosition((int)player.transform.position.x, (int)player.transform.position.y);
+        MoveToPosition((int)player.transform.position.x, (int)player.transform.position.z);
+        MaxMovements = 3;
     }
 
     void Update() {
@@ -28,22 +32,34 @@ public class EnemyBehaviour : MonoBehaviour {
                 // peek at the next targets location & move towards
                 var target = _currentPath.Peek();
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, MoveSpeed * Time.deltaTime);
-
                 // remove from the path stack when we reach desired location
-                if (MaxMovements > 0)
+            if (MaxMovements > 0)
                 {
-                    if (target.transform.position.x == gameObject.transform.position.x && target.transform.position.z == gameObject.transform.position.z)
+                if (target.transform.position.x == gameObject.transform.position.x && target.transform.position.z == gameObject.transform.position.z)
                     {
                         _currentPath.Pop();
                         MaxMovements--;
                     }
+                    if (MaxMovements <= 0)
+                    {
+                        GameObject player = GameObject.FindGameObjectWithTag("Player");
+                        ClearPath();
+                        if (hasChecked)
+                        {
+                            var gridManager = GameObject.FindGameObjectWithTag("GridManager");
+                            var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(player.transform, (int)transform.position.x, (int)transform.position.z, 3);
+                            if (path.Count <= 4)
+                            {
+                                canAttack = true;
+                            }
+                        }
+                        if (canAttack)
+                        {
+                            player.SendMessage("TakeDamage",5);
+                        }
+                        Turns.endedTurn = true;
+                        Turns.instance.PassTurn();
                 }
-                
-
-                if (MaxMovements < 0)
-                {
-                    Turns.endedTurn = true;
-                    Turns.PassTurn();
                 }
             }
         
