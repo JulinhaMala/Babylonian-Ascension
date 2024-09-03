@@ -50,7 +50,7 @@ public class MouseMove : MonoBehaviour
                             return;
                         }
                         else
-                        {
+                        { 
                             player.GetComponent<CharacterBehaviour>().PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong);
                         }
                         
