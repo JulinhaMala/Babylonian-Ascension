@@ -161,14 +161,6 @@ public class GridBehaviour : MonoBehaviour {
                 int mapObj = map[i, j];
                 switch (mapObj) {
                     case (int)GridType.water:
-
-                        GameObject water = Instantiate(GridPrefab[0], new Vector3(startPosition.x + Scale * i, startPosition.y - 1f, startPosition.z + Scale * j), Quaternion.identity);
-                        water.name = $"grid-x{i}-y{j}-z1";
-                        water.transform.SetParent(gameObject.transform);
-                        water.GetComponent<GridStats>().X = i;
-                        water.GetComponent<GridStats>().Y = j;
-                        water.GetComponent<GridStats>().Z = -1;
-                        water.GetComponent<GridStats>().walkable = false;
                         break;
 
                     case (int)GridType.ground:
