@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class GridBehaviour : MonoBehaviour {
@@ -224,14 +221,5 @@ public class GridBehaviour : MonoBehaviour {
         
         return GetPath(startX, startY, toX, toY);
         
-    }
-
-    List<GameObject> GetAvailablePositions(Transform currentPosition, int maximumSteps) {
-        var startX = (int)currentPosition.position.x;
-        var startY = (int)currentPosition.position.z;
-
-        SetDistance(startX, startY);
-
-        return null; // todo;
     }
 }
