@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseMove : MonoBehaviour
@@ -15,6 +16,7 @@ public class MouseMove : MonoBehaviour
     bool canAttack = false;
     bool hasInicied = true;
     bool hasChecked = true;
+    bool hasOccupied;
 
     void Update()
     {
@@ -25,6 +27,7 @@ public class MouseMove : MonoBehaviour
             canMove = true;
             hasInicied = false;
             player.GetComponent<CharacterBehaviour>().hasMoved = false;
+
         }
         if (Turns.actualTurn == Turn.player)
         {
@@ -61,6 +64,8 @@ public class MouseMove : MonoBehaviour
                         {
                             player.GetComponent<CharacterBehaviour>().ClearPath();
                             player.GetComponent<CharacterBehaviour>().MoveToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z);
+                            destiny.SendMessage("IsOccupied", SendMessageOptions.DontRequireReceiver);
+                            hasOccupied = true;
                         }
                     }
                 }

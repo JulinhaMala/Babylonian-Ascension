@@ -12,6 +12,7 @@ public class CharacterBehaviour : MonoBehaviour {
 
     public bool hasMoved;
 
+    public GameObject occupiedSquare;
     void Update() {
         // check movement stack to see if we need to move the character
         if (_currentPath.Count > 0) {

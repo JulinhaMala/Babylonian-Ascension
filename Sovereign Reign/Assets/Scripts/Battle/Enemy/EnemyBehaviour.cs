@@ -6,7 +6,7 @@ public class EnemyBehaviour : MonoBehaviour {
     Stack<GameObject> _currentPath = new Stack<GameObject>();
 
     [Header("Movement Settings")]
-    public int MaxMovements = 4;
+    public int MaxMovements = 3;
     public float MoveSpeed = 10;
 
     bool hasChecked = true;
@@ -33,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour {
                 var target = _currentPath.Peek();
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, MoveSpeed * Time.deltaTime);
                 // remove from the path stack when we reach desired location
-            if (MaxMovements > 0)
+            if (MaxMovements >= 0)
                 {
                 if (target.transform.position.x == gameObject.transform.position.x && target.transform.position.z == gameObject.transform.position.z)
                     {
