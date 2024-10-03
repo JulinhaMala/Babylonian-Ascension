@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseMove : MonoBehaviour
@@ -9,6 +8,7 @@ public class MouseMove : MonoBehaviour
     
     public GameObject player;
     public GameObject enemy;
+    public ParticleSystem particle;
 
     public static bool canMove;
 
@@ -16,8 +16,11 @@ public class MouseMove : MonoBehaviour
     bool canAttack = false;
     bool hasInicied = true;
     bool hasChecked = true;
-    bool hasOccupied;
 
+    private void Start()
+    {
+        particle = GetComponentInChildren<ParticleSystem>();
+    }
     void Update()
     {
         if (hasInicied)
@@ -53,7 +56,7 @@ public class MouseMove : MonoBehaviour
                         }
                         else
                         { 
-                            player.GetComponent<CharacterBehaviour>().PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong);
+                            player.GetComponent<CharacterBehaviour>().PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong, particle);
                         }
                         
                     }
@@ -65,7 +68,6 @@ public class MouseMove : MonoBehaviour
                             player.GetComponent<CharacterBehaviour>().ClearPath();
                             player.GetComponent<CharacterBehaviour>().MoveToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z);
                             destiny.SendMessage("IsOccupied", SendMessageOptions.DontRequireReceiver);
-                            hasOccupied = true;
                         }
                     }
                 }
