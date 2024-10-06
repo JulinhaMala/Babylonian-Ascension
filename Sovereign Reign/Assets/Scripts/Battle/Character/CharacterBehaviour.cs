@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static UnityEngine.InputManagerEntry;
+using UnityEngine.UIElements;
 
 public class CharacterBehaviour : MonoBehaviour {
 
@@ -10,6 +13,7 @@ public class CharacterBehaviour : MonoBehaviour {
     public int MaxMovements = 3;
     public float MoveSpeed = 3;
 
+    public bool isMoving;
     public bool hasMoved;
 
     public GameObject occupiedSquare;
@@ -26,8 +30,9 @@ public class CharacterBehaviour : MonoBehaviour {
         // check movement stack to see if we need to move the character
         if (_currentPath.Count > 0) {
             anim.SetBool("Moving", true);
+            isMoving = true;
             // peek at the next targets location & move towards
-            
+
             var target = _currentPath.Peek();
             transform.LookAt(target.transform);
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, MoveSpeed * Time.deltaTime);
@@ -40,22 +45,20 @@ public class CharacterBehaviour : MonoBehaviour {
             
             if (_currentPath.Count == 0)
             {
+                isMoving = false;
                 hasMoved = true;
                 anim.SetBool("Moving", false);
-                print(transform.localRotation.y);
+                ClearPlain();
                     if(transform.localRotation.y == 0)
                     {
-                        print("Wrong 0");
                         transform.Rotate(0, 90, 0);
                     }
                     else if (transform.localRotation.y <= -0.6 && transform.localRotation.y >= -0.8)
                     {
-                        print("Wrong -90");
                         transform.Rotate(0, 180, 0);
                     }
                     else if (transform.localRotation.y == 1)
                     {
-                        print("Wrong -180");
                         transform.Rotate(0, 270, 0);
                     }
             }
@@ -75,26 +78,9 @@ public class CharacterBehaviour : MonoBehaviour {
             }
             if (steps == 6)
             {
-                if (toX == transform.position.x || toY == transform.position.z)
+                if (steps == 6)
                 {
-                    steps--;
-                    print("Reto");
-                }
-                if (toX == transform.position.x + 4 && (toY == transform.position.z + 3 || toY == transform.position.z - 3))
-                {
-                    steps++;
-                }
-                if (toX == transform.position.x - 4 && (toY == transform.position.z + 3 || toY == transform.position.z - 3))
-                {
-                    steps++;
-                }
-                if (toY == transform.position.z + 4 && (toX == transform.position.x + 3 || toX == transform.position.x - 3))
-                {
-                    steps++;
-                }
-                if (toY == transform.position.z - 4 && (toX == transform.position.x + 3 || toX == transform.position.x - 3))
-                {
-                    steps++;
+                    steps = SixMovement(toX, toY, steps);
                 }
             }
             for (int i = 0; i < path.Count; i++) {
@@ -129,40 +115,27 @@ public class CharacterBehaviour : MonoBehaviour {
             // use our grid manager to calculate the best route to a specific position
             
             var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(gameObject.transform, toX, toY, MaxMovements);
+            if (path == null || path.Count <= 0)
+            {
+                renderer.enabled = false;
+                particle.enableEmission = false;
+                return;
+            }
+            if (path != null && path.Count < 0)
+            {
+                renderer.enabled = true;
+                particle.enableEmission = true;
+            }
             if (toX == transform.position.x || toY == transform.position.z)
             {
                 steps--;
-                print("Reto");
             }
             if (steps == 6)
             {
-                if (toX == transform.position.x || toY == transform.position.z)
-                {
-                    steps--;
-                    print("Reto");
-                }
-                if (toX == transform.position.x + 4 && (toY == transform.position.z + 3 || toY == transform.position.z - 3))
-                {
-                    steps++;
-                }
-                if (toX == transform.position.x - 4 && (toY == transform.position.z + 3 || toY == transform.position.z - 3))
-                {
-                    steps++;
-                }
-                if (toY == transform.position.z + 4 && (toX == transform.position.x + 3 || toX == transform.position.x - 3))
-                {
-                    steps++;
-                }
-                if (toY == transform.position.z - 4 && (toX == transform.position.x + 3 || toX == transform.position.x - 3))
-                {
-                    steps++;
-                }
+                steps = SixMovement(toX, toY, steps);
             }
 
-            if (path == null || path.Count < 0)
-            {
-                return;
-            }
+            
 
 
             for (int i = 0; i < path.Count; i++)
@@ -184,6 +157,32 @@ public class CharacterBehaviour : MonoBehaviour {
         {
             print("Could not find GridManager object within scene.");
         }
+    }
+
+    int SixMovement(int toX, int toY, int steps)
+    {
+        if (toX == transform.position.x || toY == transform.position.z)
+        {
+            steps--;
+        }
+        else if (toX == transform.position.x + 4 && (toY == transform.position.z + 3 || toY == transform.position.z - 3))
+        {
+            steps++;
+        }
+        else if (toX == transform.position.x - 4 && (toY == transform.position.z + 3 || toY == transform.position.z - 3))
+        {
+            steps++;
+        }
+        else if (toY == transform.position.z + 4 && (toX == transform.position.x + 3 || toX == transform.position.x - 3))
+        {
+            steps++;
+        }
+        else if (toY == transform.position.z - 4 && (toX == transform.position.x + 3 || toX == transform.position.x - 3))
+        {
+            steps++;
+        }
+
+        return steps;
     }
     public void ClearPlain()
     {

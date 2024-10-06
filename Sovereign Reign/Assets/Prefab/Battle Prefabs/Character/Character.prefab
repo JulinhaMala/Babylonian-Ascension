@@ -113,9 +113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxMovements: 6
-  MoveSpeed: 10
+  MoveSpeed: 5
   hasMoved: 0
   occupiedSquare: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!114 &1024018029589703126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +202,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 3524390491440539353}
+    - target: {fileID: 11400000, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1885862585, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
     - {fileID: 5321184792874943586, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
@@ -208,6 +217,8 @@ PrefabInstance:
     - {fileID: 114472432562717340, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
     - {fileID: 7517427521858630766, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
     - {fileID: 3668655356348723783, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
+    - {fileID: 5400000, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
+    - {fileID: 13681452, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b1cc94d26cd016d479aa5b522d88da0a, type: 3}
 --- !u!4 &3524390491440539353 stripped
 Transform:

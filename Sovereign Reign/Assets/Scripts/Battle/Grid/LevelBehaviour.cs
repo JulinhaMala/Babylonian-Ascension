@@ -44,7 +44,7 @@ public class LevelBehaviour : MonoBehaviour {
 
     void GeneratePlayer() {
         // todo; we want to use our level id or something to place player/character into world
-        Instantiate(CharacterPrefab, transform.position, Quaternion.identity);
+        Instantiate(CharacterPrefab, new Vector3 (0,0,0) , Quaternion.identity);
     }
 
     void GenerateEnemy()

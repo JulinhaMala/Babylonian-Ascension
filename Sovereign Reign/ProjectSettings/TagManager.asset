@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Win
   - Lose
+  - Grid
   layers:
   - Default
   - TransparentFX

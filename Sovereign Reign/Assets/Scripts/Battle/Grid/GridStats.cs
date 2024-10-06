@@ -12,12 +12,10 @@ public class GridStats : MonoBehaviour {
     public void IsOccupied()
     {
         occupied = true;
-        print("oc");
     }
 
     public void LeftSquare()
     {
         occupied = false;
-        print("li");
     }
 }

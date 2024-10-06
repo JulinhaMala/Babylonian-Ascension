@@ -8,6 +8,7 @@ public class MouseMove : MonoBehaviour
     
     public GameObject player;
     public GameObject enemy;
+    GameObject storage;
     public ParticleSystem particle;
 
     public static bool canMove;
@@ -17,6 +18,10 @@ public class MouseMove : MonoBehaviour
     bool hasInicied = true;
     bool hasChecked = true;
 
+    bool hasMoved = true;
+    bool canPlay = true;
+
+    AudioSource audioSource;
     private void Start()
     {
         particle = GetComponentInChildren<ParticleSystem>();
@@ -28,9 +33,10 @@ public class MouseMove : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
             enemy = GameObject.FindGameObjectWithTag("Enemy");
             canMove = true;
-            hasInicied = false;
             player.GetComponent<CharacterBehaviour>().hasMoved = false;
-
+            storage = null;
+            hasInicied = false;
+            audioSource = GetComponent<AudioSource>();
         }
         if (Turns.actualTurn == Turn.player)
         {
@@ -39,14 +45,33 @@ public class MouseMove : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit raycastHit))
                 {
+                    particle.enableEmission = true;
                     render.enabled = true;
                     hasChecked = true;
+
                     if (raycastHit.collider.CompareTag("Water"))
                     {
                         return;
                     }
-                    transform.position = raycastHit.transform.position;
-                    destiny = raycastHit.collider.gameObject;
+                    if (raycastHit.collider.CompareTag("Grid"))
+                    {
+                        transform.position = raycastHit.transform.position;
+                        destiny = raycastHit.collider.gameObject;
+                    }
+
+                    if (storage != destiny)
+                    {
+                        storage = destiny;
+                        canPlay = true;
+                    }
+
+                    if (canPlay)
+                    {
+                        audioSource.Play();
+                        canPlay = false;
+                    }
+
+
                     if (player)
                     {
                         player.GetComponent<CharacterBehaviour>().ClearPlain();
@@ -75,6 +100,12 @@ public class MouseMove : MonoBehaviour
             }
             
         }
+        if (player.GetComponent<CharacterBehaviour>().isMoving)
+        {
+            render.enabled = false;
+            particle.enableEmission = false;
+            canPlay = false;
+        }
         if (player.GetComponent<CharacterBehaviour>().hasMoved)
         {
             if (hasChecked)
@@ -86,7 +117,6 @@ public class MouseMove : MonoBehaviour
                     canAttack = true;
                 }
             }
-            render.enabled = false;
             Turns.endedTurn = true;
             canMove = false;
             if (canAttack)

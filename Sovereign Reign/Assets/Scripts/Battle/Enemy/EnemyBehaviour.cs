@@ -14,13 +14,15 @@ public class EnemyBehaviour : MonoBehaviour {
 
     public static EnemyBehaviour instance;
 
+    GameObject player;
+
     void Awake()
     {
         instance = this;
     }
     public void StartEnemyTurn()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         MoveToPosition((int)player.transform.position.x, (int)player.transform.position.z);
         MaxMovements = 3;
     }
@@ -39,6 +41,10 @@ public class EnemyBehaviour : MonoBehaviour {
                     {
                         _currentPath.Pop();
                         MaxMovements--;
+                    }
+                if (target.transform.position.x == player.transform.position.x && target.transform.position.z == player.transform.position.z)
+                    {
+                        MaxMovements = 0;
                     }
                     if (MaxMovements <= 0)
                     {
