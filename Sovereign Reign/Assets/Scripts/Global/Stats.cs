@@ -64,6 +64,7 @@ public class Stats : MonoBehaviour
             hasBattled = false;
         }
         actualTime += Time.deltaTime;
+        print(actualTime/timeToPassDay);
         if (actualTime >= timeToPassDay) 
         {
             print("StatsUP");
