@@ -12,10 +12,11 @@ public class Stats : MonoBehaviour
 
     public static float econoS, militaS, socialS, desenvolS;
 
-    [SerializeField] int timeToPassDay = 20;
-    float actualTime;
+    [SerializeField] public int timeToPassDay = 20;
+    public float actualTime;
 
     public static bool hasBattled;
+    public bool didAllEvent; 
 
     public void Awake()
     {
@@ -64,14 +65,24 @@ public class Stats : MonoBehaviour
             hasBattled = false;
         }
         actualTime += Time.deltaTime;
-        print(actualTime/timeToPassDay);
         if (actualTime >= timeToPassDay) 
         {
             print("StatsUP");
-            econo += econoX;
-            milita += militaX;
-            social += socialX;
-            desenvol += desenvolX;
+            if (didAllEvent)
+            {
+                econo += econoX;
+                milita += militaX;
+                social += socialX;
+                desenvol += desenvolX;
+                didAllEvent = false;
+            }
+            else if (!didAllEvent)
+            {
+                econo -= econoX;
+                milita -= militaX;
+                social -= socialX;
+                desenvol -= desenvolX;
+            }
             Trade.instance.Reset();
             Days.instance.PassDay();
             actualTime = 0;

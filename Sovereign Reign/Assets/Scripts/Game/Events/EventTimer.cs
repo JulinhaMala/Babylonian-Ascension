@@ -18,7 +18,13 @@ public class EventTimer : MonoBehaviour
         time += Time.deltaTime;
         if (time >= timer)
         {
+            if (Stats.instance.actualTime / Stats.instance.timeToPassDay >= 0.8)
+            {
+                return;
+            }
             SetActive.Invoke();
+            Stats.instance.didAllEvent = false;
+            
         }
     }
     public void Reset()
@@ -32,5 +38,10 @@ public class EventTimer : MonoBehaviour
     public void UnstopTime()
     {
         Time.timeScale = 1;
+    }
+
+    public void DidEvent()
+    {
+        Stats.instance.didAllEvent = true;
     }
 }

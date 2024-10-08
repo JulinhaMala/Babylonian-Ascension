@@ -164,7 +164,6 @@ public class GridBehaviour : MonoBehaviour {
 
                         // instantiate our grid object & assign position
                         GameObject ground = Instantiate(GridPrefab[1], new Vector3(startPosition.x + i, startPosition.y, startPosition.z + j), Quaternion.identity);
-                        print(i);
                         ground.name = $"grid-x{i}-y{j}";
                         ground.transform.SetParent(gameObject.transform);
                         ground.GetComponent<GridStats>().X = i;
