@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using static UnityEngine.InputManagerEntry;
-using UnityEngine.UIElements;
 
 public class CharacterBehaviour : MonoBehaviour {
 
