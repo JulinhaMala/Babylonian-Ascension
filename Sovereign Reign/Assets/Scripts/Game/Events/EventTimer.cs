@@ -24,7 +24,6 @@ public class EventTimer : MonoBehaviour
             }
             SetActive.Invoke();
             Stats.instance.didAllEvent = false;
-            
         }
     }
     public void Reset()
