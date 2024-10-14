@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CharacterBehaviour : MonoBehaviour {
 
+    public static CharacterBehaviour instance;
+
     Stack<GameObject> _currentPath = new Stack<GameObject>();
     Stack<GameObject> _possiblePath = new Stack<GameObject>();
 
@@ -11,7 +13,7 @@ public class CharacterBehaviour : MonoBehaviour {
     public float MoveSpeed = 3;
 
     public bool isMoving;
-    public bool hasMoved;
+    public bool hasMoved = false;
 
     public GameObject occupiedSquare;
 
@@ -19,6 +21,7 @@ public class CharacterBehaviour : MonoBehaviour {
 
     void Start ()
     {
+        instance = this;
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("Velocity Z", 1f);
     }
@@ -83,7 +86,14 @@ public class CharacterBehaviour : MonoBehaviour {
             for (int i = 0; i < path.Count; i++) {
                 // push the values into our stack
                 // then our update function within this script will begin to move our character!
+                
                 _currentPath.Push(path[i]);
+                if (_currentPath.Peek().CompareTag("Water"))
+                {
+                    ClearPath();
+                    print("Too Long");
+                    break;
+                }
                 if (_currentPath.Count-2 >= steps)
                 {
                     ClearPath();
@@ -142,6 +152,12 @@ public class CharacterBehaviour : MonoBehaviour {
                 _possiblePath.Push(path[i]);
                 renderer.material = can;
                 particle.startColor = Color.green;
+                if (_possiblePath.Peek().CompareTag("Water"))
+                {
+                    ClearPath();
+                    print("Too Long");
+                    break;
+                }
                 if (_possiblePath.Count - 2 >= steps)
                 {
                     renderer.material = cant;

@@ -36,7 +36,7 @@ public class Turns : MonoBehaviour
 
             if (actualTurn == Turn.player)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterBehaviour>().hasMoved = false;
+                CharacterBehaviour.instance.hasMoved = false;
                 MouseMove.canMove = true;
             }
         }

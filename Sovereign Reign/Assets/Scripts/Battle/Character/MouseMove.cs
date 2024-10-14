@@ -33,7 +33,6 @@ public class MouseMove : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
             enemy = GameObject.FindGameObjectWithTag("Enemy");
             canMove = true;
-            player.GetComponent<CharacterBehaviour>().hasMoved = false;
             storage = null;
             hasInicied = false;
             audioSource = GetComponent<AudioSource>();
@@ -74,14 +73,14 @@ public class MouseMove : MonoBehaviour
 
                     if (player)
                     {
-                        player.GetComponent<CharacterBehaviour>().ClearPlain();
+                        CharacterBehaviour.instance.ClearPlain();
                         if ((int)destiny.transform.position.x > 15 || (int)destiny.transform.position.z > 15 || (int)destiny.transform.position.x < 0 || (int)destiny.transform.position.z < 0)
                         {
                             return;
                         }
                         else
                         { 
-                            player.GetComponent<CharacterBehaviour>().PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong, particle);
+                            CharacterBehaviour.instance.PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong, particle);
                         }
                         
                     }
@@ -90,8 +89,8 @@ public class MouseMove : MonoBehaviour
                     {
                         if (player)
                         {
-                            player.GetComponent<CharacterBehaviour>().ClearPath();
-                            player.GetComponent<CharacterBehaviour>().MoveToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z);
+                            CharacterBehaviour.instance.ClearPath();
+                            CharacterBehaviour.instance.MoveToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z);
                             destiny.SendMessage("IsOccupied", SendMessageOptions.DontRequireReceiver);
                         }
                     }
@@ -100,13 +99,13 @@ public class MouseMove : MonoBehaviour
             }
             
         }
-        if (player.GetComponent<CharacterBehaviour>().isMoving)
+        if (CharacterBehaviour.instance.isMoving)
         {
             render.enabled = false;
             particle.enableEmission = false;
             canPlay = false;
         }
-        if (player.GetComponent<CharacterBehaviour>().hasMoved)
+        if (CharacterBehaviour.instance.hasMoved)
         {
             if (hasChecked)
             {

@@ -18,5 +18,10 @@ public class MainMenu : MonoBehaviour
     {
         eventSystem.SetSelectedGameObject(button);
     }
+
+    public void Battle()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
 
