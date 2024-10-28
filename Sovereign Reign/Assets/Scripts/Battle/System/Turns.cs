@@ -37,7 +37,6 @@ public class Turns : MonoBehaviour
             if (actualTurn == Turn.player)
             {
                 CharacterBehaviour.instance.hasMoved = false;
-                MouseMove.canMove = true;
             }
         }
     }

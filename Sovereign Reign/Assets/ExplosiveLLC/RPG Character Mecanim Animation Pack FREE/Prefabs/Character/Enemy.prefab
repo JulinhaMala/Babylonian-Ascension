@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 114739187124406758}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   animationSpeed: 1
   ikHands: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 400004}
   rightWeapon: 0
   leftWeapon: 0
 --- !u!114 &114739187124406758
@@ -247,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 13700004, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ad8c2bee857aaca4dbcf348b7e988a44, type: 2}
+      objectReference: {fileID: 2100000, guid: 72b94515887de084a9a36b0a993a446f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
 --- !u!4 &5017534650379737865 stripped

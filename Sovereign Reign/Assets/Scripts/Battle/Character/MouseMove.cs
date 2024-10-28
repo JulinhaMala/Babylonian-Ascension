@@ -34,8 +34,8 @@ public class MouseMove : MonoBehaviour
             enemy = GameObject.FindGameObjectWithTag("Enemy");
             canMove = true;
             storage = null;
-            hasInicied = false;
             audioSource = GetComponent<AudioSource>();
+            hasInicied = false;
         }
         if (Turns.actualTurn == Turn.player)
         {
@@ -70,21 +70,16 @@ public class MouseMove : MonoBehaviour
                         canPlay = false;
                     }
 
-
-                    if (player)
+                    CharacterBehaviour.instance.ClearPlain();
+                    if ((int)destiny.transform.position.x > 15 || (int)destiny.transform.position.z > 15 || (int)destiny.transform.position.x < 0 || (int)destiny.transform.position.z < 0)
                     {
-                        CharacterBehaviour.instance.ClearPlain();
-                        if ((int)destiny.transform.position.x > 15 || (int)destiny.transform.position.z > 15 || (int)destiny.transform.position.x < 0 || (int)destiny.transform.position.z < 0)
-                        {
-                            return;
-                        }
-                        else
-                        { 
-                            CharacterBehaviour.instance.PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong, particle);
-                        }
-                        
+                        return;
                     }
-
+                    else
+                    { 
+                        CharacterBehaviour.instance.PlainToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z, render, correct, wrong, particle);
+                    }
+                        
                     if (Input.GetMouseButtonDown(0))
                     {
                         if (player)
@@ -92,13 +87,13 @@ public class MouseMove : MonoBehaviour
                             CharacterBehaviour.instance.ClearPath();
                             CharacterBehaviour.instance.MoveToPosition((int)destiny.transform.position.x, (int)destiny.transform.position.z);
                             destiny.SendMessage("IsOccupied", SendMessageOptions.DontRequireReceiver);
+                            canMove = false;
                         }
                     }
                 }
-                
             }
-            
         }
+
         if (CharacterBehaviour.instance.isMoving)
         {
             render.enabled = false;

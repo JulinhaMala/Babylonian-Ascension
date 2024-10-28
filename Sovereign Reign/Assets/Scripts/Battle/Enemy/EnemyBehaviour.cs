@@ -33,7 +33,14 @@ public class EnemyBehaviour : MonoBehaviour {
             {
                 // peek at the next targets location & move towards
                 var target = _currentPath.Peek();
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, MoveSpeed * Time.deltaTime);
+                if (target.transform.position == new Vector3((int)player.transform.position.x, player.transform.position.y, (int)player.transform.position.z))
+                {
+                }
+                else
+                {
+                    transform.LookAt(target.transform);
+                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, MoveSpeed * Time.deltaTime);
+                }
                 // remove from the path stack when we reach desired location
             if (MaxMovements >= 0)
                 {
@@ -54,6 +61,10 @@ public class EnemyBehaviour : MonoBehaviour {
                         {
                             var gridManager = GameObject.FindGameObjectWithTag("GridManager");
                             var path = gridManager.GetComponent<GridBehaviour>().GetPathToPosition(player.transform, (int)transform.position.x, (int)transform.position.z, 3);
+                            if (path == null)
+                            {
+                                print("abobora");
+                            }
                             if (path.Count <= 4)
                             {
                                 canAttack = true;
@@ -63,9 +74,23 @@ public class EnemyBehaviour : MonoBehaviour {
                         {
                             player.SendMessage("TakeDamage",5);
                         }
+                        if (transform.localRotation.y == 0)
+                        {
+                            transform.Rotate(0, 90, 0);
+                        }
+                        else if (transform.localRotation.y <= -0.6 && transform.localRotation.y >= -0.8)
+                        {
+                            transform.Rotate(0, 180, 0);
+                        }
+                        else if (transform.localRotation.y == 1)
+                        {
+                            transform.Rotate(0, 270, 0);
+                        }
                         Turns.endedTurn = true;
                         Turns.instance.PassTurn();
-                }
+
+                        MouseMove.canMove = true;
+                    }
                 }
             }
         
