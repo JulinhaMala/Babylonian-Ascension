@@ -56,6 +56,7 @@ public class EnemyBehaviour : MonoBehaviour {
                     if (MaxMovements <= 0)
                     {
                         GameObject player = GameObject.FindGameObjectWithTag("Player");
+                        transform.LookAt(player.transform);
                         ClearPath();
                         if (hasChecked)
                         {
@@ -73,18 +74,6 @@ public class EnemyBehaviour : MonoBehaviour {
                         if (canAttack)
                         {
                             player.SendMessage("TakeDamage",5);
-                        }
-                        if (transform.localRotation.y == 0)
-                        {
-                            transform.Rotate(0, 90, 0);
-                        }
-                        else if (transform.localRotation.y <= -0.6 && transform.localRotation.y >= -0.8)
-                        {
-                            transform.Rotate(0, 180, 0);
-                        }
-                        else if (transform.localRotation.y == 1)
-                        {
-                            transform.Rotate(0, 270, 0);
                         }
                         Turns.endedTurn = true;
                         Turns.instance.PassTurn();

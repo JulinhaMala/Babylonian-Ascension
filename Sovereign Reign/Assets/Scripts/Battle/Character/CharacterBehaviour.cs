@@ -15,13 +15,15 @@ public class CharacterBehaviour : MonoBehaviour {
     public bool isMoving;
     public bool hasMoved = false;
 
-    public GameObject occupiedSquare;
+    GameObject occupiedSquare;
+    public GameObject enemy;
 
     public Animator anim;
 
     void Start ()
     {
         instance = this;
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("Velocity Z", 1f);
     }
@@ -49,6 +51,7 @@ public class CharacterBehaviour : MonoBehaviour {
                 hasMoved = true;
                 anim.SetBool("Moving", false);
                 ClearPlain();
+                /*
                     if(transform.localRotation.y == 0)
                     {
                         transform.Rotate(0, 90, 0);
@@ -61,6 +64,8 @@ public class CharacterBehaviour : MonoBehaviour {
                     {
                         transform.Rotate(0, 270, 0);
                     }
+                */
+                transform.LookAt(enemy.transform);
             }
         }
     }
