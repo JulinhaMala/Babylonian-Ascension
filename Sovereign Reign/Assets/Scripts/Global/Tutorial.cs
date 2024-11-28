@@ -1,18 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Tutorial : MonoBehaviour
 {
+    public static bool hasEnded;
     public int index;
+
+    public UnityEvent TutorialSkip;
+
+    public UnityEvent TutorialEnd;
 
     public UnityEvent deactiveAll;
 
-    public UnityEvent trade1;
+    public UnityEvent Phase1;
+    public UnityEvent Phase2;
+    public UnityEvent Phase3;
+    public UnityEvent Phase4;
 
-    public UnityEvent colluns1;
+    void Start()
+    {
+        Time.timeScale = 0f;
+        if (hasEnded)
+        {
+            TutorialSkip.Invoke();
+        }
+    }
 
+    public void EndTutorial()
+    {
+        Time.timeScale = 1f;
+        hasEnded = true;
+        TutorialEnd.Invoke();
+    }
 
     public void PassTutorial()
     {
@@ -21,57 +40,25 @@ public class Tutorial : MonoBehaviour
             case 0:
                 deactiveAll.Invoke();
 
-                trade1.Invoke();
+                Phase1.Invoke();
                 break;
             case 1:
                 deactiveAll.Invoke();
 
-                colluns1.Invoke();
+                Phase2.Invoke();
                 break;
             case 2:
                 deactiveAll.Invoke();
 
-                trade1.Invoke();
+                Phase3.Invoke();
                 break;
             case 3:
                 deactiveAll.Invoke();
 
-                trade1.Invoke();
+                Phase4.Invoke();
                 break;
             case 4:
-                deactiveAll.Invoke();
-
-                trade1.Invoke();
-                break;
-            case 5:
-                deactiveAll.Invoke();
-
-                deactiveAll.Invoke();
-                break;
-            case 6:
-                deactiveAll.Invoke();
-
-                deactiveAll.Invoke();
-                break;
-            case 7:
-                deactiveAll.Invoke();
-
-                deactiveAll.Invoke();
-                break;
-            case 8:
-                deactiveAll.Invoke();
-
-                deactiveAll.Invoke();
-                break;
-            case 9:
-                break;
-            case 10:
-                break;
-            case 11:
-                break;
-            case 12:
-                break;
-            case 13:
+                EndTutorial();
                 break;
         }
         index++;

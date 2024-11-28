@@ -55,19 +55,19 @@ public class Columns : MonoBehaviour
     
     void EcoText()
     {
-        Eco_Text.text = $" {Stats.instance.econo} / {Stats.instance.maxEcono}";
+        Eco_Text.text = $" {(int)Stats.instance.econo} / {Stats.instance.maxEcono}";
     }
     void MilText()
     {
-        Mil_Text.text = $"{Stats.instance.milita} / {Stats.instance.maxMilita}";
+        Mil_Text.text = $"{(int)Stats.instance.milita} / {Stats.instance.maxMilita}";
     }
     void SociText()
     {
-        Soci_Text.text = $"{Stats.instance.social} / {Stats.instance.maxSocial}";
+        Soci_Text.text = $"{(int)Stats.instance.social} / {Stats.instance.maxSocial}";
     }
     void DeseText()
     {
-        Dese_Text.text = $"{Stats.instance.desenvol} / {Stats.instance.maxDesenvol}";
+        Dese_Text.text = $"{(int)Stats.instance.desenvol} / {Stats.instance.maxDesenvol}";
     }
     
 }

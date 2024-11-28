@@ -24,7 +24,7 @@ public class ConsillButtons : MonoBehaviour
                 button.text = "Economia + / Social -";
                 break;
             case 3:
-                button.text = "Economia + / Desenvol -";
+                button.text = "Economia + / Pesquisa -";
                 break;
             #endregion
             #region Militar
@@ -35,7 +35,7 @@ public class ConsillButtons : MonoBehaviour
                 button.text = "Militar + / Social -";
                 break;
             case 6:
-                button.text = "Militar + / Desenvolvimento -";
+                button.text = "Militar + / Pesquisa -";
                 break;
             #endregion
             #region Social
@@ -46,18 +46,18 @@ public class ConsillButtons : MonoBehaviour
                 button.text = "Social + / Militar -";
                 break;
             case 9:
-                button.text = "Social + / Desenvolvimento -";
+                button.text = "Social + / Pesquisa -";
                 break;
     #endregion
             #region Desenvolvimento
             case 10:
-                button.text = "Desenvolvimento + / Economia -";
+                button.text = "Pesquisa + / Economia -";
                 break;
             case 11:
-                button.text = "Desenvolvimento + / Militar -";
+                button.text = "Pesquisa + / Militar -";
                 break;
             case 12:
-                button.text = "Desenvolvimento + / Social -";
+                button.text = "Pesquisa + / Social -";
                 break;
     #endregion
         }
